@@ -1,6 +1,5 @@
 from subprocess import call
 
-call(["python", "2.1.1py"])
 
 word = input()
 
