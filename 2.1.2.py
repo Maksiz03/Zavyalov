@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-DobacilNum=0
+DobacilNum=1
 width =0.35
 dictSalaryForYear = {2007: 38916, 2008: 43646, 2009: 42492, 2010: 43846, 2011: 47451, 2012: 48243, 2013: 51510, 2014: 50658}
 dictSalaryForYearForProf = {2007: 43770, 2008: 50412, 2009: 46699, 2010: 50570, 2011: 55770, 2012: 57960, 2013: 58804, 2014: 62384}
