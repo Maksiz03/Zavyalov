@@ -19,53 +19,86 @@ statForYear.title = "Статистика по годам"
 statForCity = wb.create_sheet("Статистика по городам")
 
 statForCity['A1'] = 42
-for i, statN in enumerate(namesForstatForYear):
-    statForYear.cell(row=1, column=i+1).value = statN
-    statForYear.cell(row=1, column=i + 1).font = Font(bold=True)
-for i, statN in enumerate(dictSalaryForYear.keys()):
-    statForYear.cell(row=i+2, column=1).value = statN
-for i, statN in enumerate(dictSalaryForYear.values()):
-    statForYear.cell(row=i+2, column=2).value = statN
-for i, statN in enumerate(dictSalaryForYearForProf.values()):
-    statForYear.cell(row=i + 2, column=3).value = statN
-for i, statN in enumerate(dictCountVacansy.values()):
-    statForYear.cell(row=i + 2, column=4).value = statN
-for i, statN in enumerate(dictCountVacansyForProf.values()):
-    statForYear.cell(row=i + 2, column=5).value = statN
 
-for i, statN in enumerate(namesForStatForCity[0:2]):
-        statForCity.cell(row=1, column=i+1).value = statN
+
+def doFirstTable():
+    """
+    Функция заполняет ячейки таблицы
+    """
+    global i, statN
+    for i, statN in enumerate(namesForstatForYear):
+        statForYear.cell(row=1, column=i + 1).value = statN
+        statForYear.cell(row=1, column=i + 1).font = Font(bold=True)
+    for i, statN in enumerate(dictSalaryForYear.keys()):
+        statForYear.cell(row=i + 2, column=1).value = statN
+    for i, statN in enumerate(dictSalaryForYear.values()):
+        statForYear.cell(row=i + 2, column=2).value = statN
+    for i, statN in enumerate(dictSalaryForYearForProf.values()):
+        statForYear.cell(row=i + 2, column=3).value = statN
+    for i, statN in enumerate(dictCountVacansy.values()):
+        statForYear.cell(row=i + 2, column=4).value = statN
+    for i, statN in enumerate(dictCountVacansyForProf.values()):
+        statForYear.cell(row=i + 2, column=5).value = statN
+
+
+doFirstTable()
+
+
+def doSecondTable():
+    """
+        Функция заполняет ячейки таблицы
+    """
+    global i, statN
+    for i, statN in enumerate(namesForStatForCity[0:2]):
+        statForCity.cell(row=1, column=i + 1).value = statN
         statForCity.cell(row=1, column=i + 1).font = Font(bold=True)
-for i, statN in enumerate(namesForStatForCity[0::2]):
-        statForCity.cell(row=1, column=i+4).value = statN
+    for i, statN in enumerate(namesForStatForCity[0::2]):
+        statForCity.cell(row=1, column=i + 4).value = statN
         statForCity.cell(row=1, column=i + 4).font = Font(bold=True)
-for i, statN in enumerate(dictLevelSalaryForYearForCity.keys()):
-        statForCity.cell(row=i+2, column=1).value = statN
-for i, statN in enumerate(dictLevelSalaryForYearForCity.values()):
-        statForCity.cell(row=i+2, column=2).value = statN
-for i, statN in enumerate(dictPercentVacancyForcity.keys()):
-        statForCity.cell(row=i+2, column=4).value = statN
-for i, statN in enumerate(dictPercentVacancyForcity.values()):
+    for i, statN in enumerate(dictLevelSalaryForYearForCity.keys()):
+        statForCity.cell(row=i + 2, column=1).value = statN
+    for i, statN in enumerate(dictLevelSalaryForYearForCity.values()):
+        statForCity.cell(row=i + 2, column=2).value = statN
+    for i, statN in enumerate(dictPercentVacancyForcity.keys()):
+        statForCity.cell(row=i + 2, column=4).value = statN
+    for i, statN in enumerate(dictPercentVacancyForcity.values()):
         statForCity.cell(row=i + 2, column=5).value = statN
         statForCity.cell(row=i + 2, column=5).number_format = '0.00%'
 
+
+doSecondTable()
 
 thin_border = Border(left=Side(style='thin'),
                      right=Side(style='thin'),
                      top=Side(style='thin'),
                      bottom=Side(style='thin'))
 
-for i in range(9):
-    for j in range(5):
-        statForYear.cell(row=i+1, column=j+1).border = thin_border
 
-for i in range(11):
-    for j in range(5):
-        if j!=2:
-            statForCity.cell(row=i+1, column=j+1).border = thin_border
+def border():
+    """
+        Функция задает офрмления для границ ячеек
+
+    """
+    global i
+    for i in range(9):
+        for j in range(5):
+            statForYear.cell(row=i + 1, column=j + 1).border = thin_border
+    for i in range(11):
+        for j in range(5):
+            if j != 2:
+                statForCity.cell(row=i + 1, column=j + 1).border = thin_border
+
+
+border()
 
 
 def padding(list):
+    """
+    Функция задает область заполнения, чтобы каждый символ ячейки влез
+
+    Входящие аргументы: list(worksheet):данные для заполнения таблица xlsx
+
+    """
     column_widths = []
     for row in list.iter_rows():
         for i, cell in enumerate(row):
@@ -76,6 +109,7 @@ def padding(list):
 
     for i, column_width in enumerate(column_widths):
         list.column_dimensions[get_column_letter(i + 1)].width = column_width+1
+
 padding(statForYear)
 padding(statForCity)
 
