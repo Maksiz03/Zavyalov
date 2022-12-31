@@ -1,7 +1,7 @@
 import pandas as pd
 import sqlite3
 
-vacancy = pd.read_csv('vacancies_dif_currencies.csv', nrows=500)
+vacancy = pd.read_csv('vacancies_dif_currencies.csv')
 course = pd.read_csv('my_data.csv')
 
 isSalaryFrom = pd.isnull(vacancy["salary_from"])
@@ -56,4 +56,4 @@ vacancy.pop('salary_to')
 vacancy.pop('salary_from')
 vacancy.pop('salary_currency')
 new_vacancy = vacancy[['name', 'salary', 'area_name', 'published_at']]
-new_vacancy.to_csv('salary100.csv', index=False)
+new_vacancy.to_csv('salary.csv', index=False)
